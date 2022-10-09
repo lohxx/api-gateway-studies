@@ -83,14 +83,45 @@ curl --request POST \
 }
 ```
 
+### Recarrega o tyk
+curl -H "x-tyk-authorization: foo" -s http://localhost:8080/tyk/reload/group | python -mjson.tool
+
 ### Acessando a api via gateway
 
 ```bash
 curl --request POST \
   --url 'http://localhost:8080/background_check/search?api_key=1d30fd48968154402b05e73866a7fa42f' \
-  --header 'Authorization: Basic IDoxZDMwZmQ0ODk2ODE1NDQwMmIwNWU3Mzg2NmE3ZmE0MmY=' \
   --header 'Content-Type: application/json' \
   --data '{
 	"document": "38927128915"
 }'
 ```
+
+```bash
+ curl --request POST \
+  --url 'http://localhost:8080/background_check/search' \
+  --header 'Authorization: Bearer 1fda00085d9844a6cadbc6f3fa0298ea8' \
+  --header 'Content-Type: application/json' \
+  --data '{
+        "document": "38927128915"
+}'
+```
+
+Não consegui fazer o basic auth funcionar ainda.
+```bash
+ curl --request POST \
+  --url 'http://localhost:8080/background_check/search' \
+  --header 'Authorization: Basic 1fda00085d9844a6cadbc6f3fa0298ea8' \
+  --header 'Content-Type: application/json' \
+  --data '{
+        "document": "38927128915"
+}'
+```
+
+### Referências
+
+[Instalação](https://tyk.io/docs/tyk-oss/ce-docker/)
+[Cria API](https://tyk.io/docs/getting-started/create-api/)
+[Auth](https://tyk.io/docs/getting-started/create-api-key/)
+
+Com o tyk é possivel escrever a propria lógica de autenticação. https://tyk.io/docs/plugins/supported-languages/rich-plugins/python/custom-auth-python-tutorial/#introduction

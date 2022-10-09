@@ -1,5 +1,3 @@
-Download do Kong curl -Ls https://get.konghq.com/quickstart | bash -s
-
 Para configurar a primeira api no Kong é necessario fazer algumas requisições.
 
 ### Configurando a rota
@@ -65,6 +63,7 @@ curl -sX POST http://localhost:8001/services/background_check/plugins/ \
 
 **Configura um request terminator para o usuario de fallback**
 
+
 curl -sX POST http://localhost:8001/consumers/d955c0cb-1a6e-4152-9440-414ebb8fee8a/plugins/ \
   -H "Content-Type: application/json" \
   --data '{"name": "request-termination", "config": { "status_code": 401, "content_type": "application/json; charset=utf-8", "body": "{\"error\": \"Authentication required\"}"} }'
@@ -75,3 +74,10 @@ curl -sX POST http://localhost:8001/consumers/d955c0cb-1a6e-4152-9440-414ebb8fee
 curl -X POST "http://localhost:8000/background_check/search?api_key=top-secret-key"
 
 curl -X POST "http://localhost:8000/background_check/search" -H 'Authorization: Basic bG9oYW5uYTpodW50ZXIz'
+
+
+Referências
+
+[Setup kong](https://hub.docker.com/_/kong)
+[Setup auth](https://docs.konghq.com/gateway/latest/kong-plugins/authentication/allowing-multiple-authentication-methods/)
+[getting started](https://docs.konghq.com/gateway/3.0.x/get-started/services-and-routes/)
