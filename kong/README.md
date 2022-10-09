@@ -3,11 +3,13 @@ Para configurar a primeira api no Kong é necessario fazer algumas requisições
 ### Configurando a rota
 
 **Cria o service que vai ser associado com a rota**
+
 curl -i -s -X POST http://localhost:8001/services \
   --data name=background_check \
   --data url='http://host.docker.internal:8003'
 
 **Cria o path que vai ser acionado na rota**
+
 curl -i -X POST http://localhost:8001/services/background_check/routes \
   --data 'paths[]=/background_check' \
   --data name=search_route
@@ -15,15 +17,18 @@ curl -i -X POST http://localhost:8001/services/background_check/routes \
 ### Configurando a autenticação
 
 **Cria um usuario**
+
 curl -i -X POST http://localhost:8001/consumers/ \
   --data username=lohanna
 
 **Configura o plugin de autenticação via api_key no query params**
+
 curl -X POST http://localhost:8001/plugins/ \
     --data "name=key-auth"  \
     --data "config.key_names=api_key"
 
 **Configura o plugin de autenticação via Authorization usando Basic auth**
+
 curl -X POST http://localhost:8001/plugins \
     --data "name=basic-auth"  \
     --data "config.hide_credentials=true"
@@ -31,20 +36,24 @@ curl -X POST http://localhost:8001/plugins \
 Para que um usuario seja possibilitado a usar varios métodos de autenticação, ele deve ser configurado em todos os plugins usados para a autenticação.
 
 **Configura uma chave**
+
 curl -i -X POST http://localhost:8001/consumers/lohanna/key-auth \
   --data key=top-secret-key
 
 **Configura basic auth**
+
 curl -sX POST http://localhost:8001/consumers/lohanna/basic-auth \
   -H "Content-Type: application/json" \
   --data '{"username": "lohanna", "password": "hunter3"}'
 
 **Configura um usuario anonimo como fallback**
+
 curl -sX POST http://localhost:8001/consumers \
   -H "Content-Type: application/json" \
   --data '{"username": "anonymous"}'
 
 **Configura o usuario fallback nos plugins**
+
 curl -sX POST http://localhost:8001/services/background_check/plugins/ \
   -H "Content-Type: application/json" \
   --data '{"name": "key-auth", "config": { "hide_credentials": true, "anonymous": "d955c0cb-1a6e-4152-9440-414ebb8fee8a"} }'
@@ -71,10 +80,11 @@ curl -sX POST http://localhost:8001/consumers/d955c0cb-1a6e-4152-9440-414ebb8fee
 
 ### Chamando api via gateway
 
+```bash
 curl -X POST "http://localhost:8000/background_check/search?api_key=top-secret-key"
 
 curl -X POST "http://localhost:8000/background_check/search" -H 'Authorization: Basic bG9oYW5uYTpodW50ZXIz'
-
+```
 
 Referências
 
