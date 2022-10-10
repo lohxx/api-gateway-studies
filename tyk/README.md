@@ -121,7 +121,10 @@ Não consegui fazer o basic auth funcionar ainda.
 ### Referências
 
 [Instalação](https://tyk.io/docs/tyk-oss/ce-docker/)
+
 [Cria API](https://tyk.io/docs/getting-started/create-api/)
+
 [Auth](https://tyk.io/docs/getting-started/create-api-key/)
+
 
 Com o tyk é possivel escrever a propria lógica de autenticação. https://tyk.io/docs/plugins/supported-languages/rich-plugins/python/custom-auth-python-tutorial/#introduction

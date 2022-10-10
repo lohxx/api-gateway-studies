@@ -1,5 +1,7 @@
 Para configurar a primeira api no Kong é necessario fazer algumas requisições.
 
+A autorização das rotas pode ser feita via o plugin https://docs.konghq.com/hub/kong-inc/acl/.
+
 ### Configurando a rota
 
 **Cria o service que vai ser associado com a rota**
@@ -89,5 +91,7 @@ curl -X POST "http://localhost:8000/background_check/search" -H 'Authorization: 
 Referências
 
 [Setup kong](https://hub.docker.com/_/kong)
+
 [Setup auth](https://docs.konghq.com/gateway/latest/kong-plugins/authentication/allowing-multiple-authentication-methods/)
+
 [getting started](https://docs.konghq.com/gateway/3.0.x/get-started/services-and-routes/)
