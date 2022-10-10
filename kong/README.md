@@ -1,7 +1,6 @@
 Para configurar a primeira api no Kong é necessario fazer algumas requisições.
 
-O kong só tem suporte ao uso da API key na query string e uso de http basic, bearer nativamente não parece possivel.
-
+### Autorização
 A autorização das rotas pode ser feita via o plugin https://docs.konghq.com/hub/kong-inc/acl/.
 
 ### Configurando a rota
