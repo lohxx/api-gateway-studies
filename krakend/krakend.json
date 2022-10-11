@@ -1,0 +1,76 @@
+{
+    "version": 3,
+    "extra_config": {
+        "auth/api-keys": {
+            "keys": [
+                {
+                    "@description": "ACME Inc.",
+                    "key": "4d2c61e1-34c4-e96c-9456-15bd983c5019",
+                    "roles": [
+                        "user",
+                        "whitelabel"
+                    ]
+                },
+                {
+                    "@description": "Administrators Inc.",
+                    "key": "58427514-be32-0b52-b7c6-d01fada30497",
+                    "roles": [
+                        "admin",
+                        "user"
+                    ]
+                }
+            ]
+        }
+    },
+    "endpoints": [
+        {
+            "endpoint": "/public",
+            "backend": [
+                {
+                    "url_pattern": "/__debug/public",
+                    "host": [
+                        "http://host.docker.internal:8080"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/admin",
+            "backend": [
+                {
+                    "url_pattern": "/__debug/admin",
+                    "host": [
+                        "http://host.docker.internal:8080"
+                    ]
+                }
+            ],
+            "extra_config": {
+                "auth/api-keys": {
+                    "roles": [
+                        "admin"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/search",
+            "method": "POST",
+            "backend": [
+                {
+                    "method": "POST",
+                    "url_pattern": "/search",
+                    "host": [
+                        "http://host.docker.internal:8000"
+                    ]
+                }
+            ],
+            "extra_config": {
+                "auth/api-keys": {
+                    "roles": [
+                        "user"
+                    ]
+                }
+            }
+        }
+    ]
+}
