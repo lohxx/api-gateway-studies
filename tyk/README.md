@@ -1,11 +1,5 @@
 Com tyk é possivel usar os 3 tipos de autenticação que já usamos hoje para autenticar os usuarios da API.
 
-A autenticação é configurada nas chaves use_keyless e auth.
-
-use_keyless = define se qualquer cliente pode acessar os endpoints ou se vai ter verificação de identidade.
-
-auth = configura como a chave da API vai ser passada para o Tyk.
-
 ### Criando API
 
 ```bash 
@@ -49,6 +43,14 @@ curl --request POST \
 ```
 
 ### Gerando chave de acesso
+
+A autenticação é configurada nas chaves use_keyless e auth.
+
+use_keyless = define se qualquer cliente pode acessar os endpoints ou se vai ter verificação de identidade.
+auth = configura como a chave da API vai ser passada para o Tyk.
+
+Para criar o usuario com as keys já existente no digesto basta cria-las como indicado no tutorial https://tyk.io/docs/frequently-asked-questions/import-existing-keys-tyk/.
+
 
 ```bash
 curl --request POST \

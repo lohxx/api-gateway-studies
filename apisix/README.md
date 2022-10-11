@@ -5,6 +5,8 @@ Não suporta dois ou mais metodos de autenticação ao mesmo tempo. https://gith
 É possivel usar um servidor externo para autenticar as requisições com o plugin forward-auth.
 https://apisix.apache.org/docs/apisix/plugins/forward-auth/.
 
+É possivel adicionar autorização usando o plugin https://apisix.apache.org/docs/apisix/plugins/authz-casbin/
+
 
 ### Criando uma rota
 
